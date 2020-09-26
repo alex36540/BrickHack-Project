@@ -87,7 +87,7 @@ public class Customer {
     protected void pay(double amount)
     {
         totalDue -= amount;
-        //company.changeProfit(amount);
+        company.changeRevenue(amount);
         if(totalDue <= 0)
         {
             timeSincePayment = 0;

@@ -175,7 +175,7 @@ public class Main_Menu {
                 {
                     loginStatus.setText("<html><font size='5' color=Green> Login Status: Successful");
                     Customer user = pointer.getUserUsername(userUsernameEntry);
-                    User_Menu um = new User_Menu(user.getCompanyName(), user.getTotalDue(), user.getCompany().getInterest(), user.getTimeSincePayment());
+                    User_Menu um = new User_Menu(user.getCompanyName(), user.getTotalDue(), user.getCompany().getInterest(), user.getTimeSincePayment(), pointer, userUsernameEntry);
                 }
             }
         });

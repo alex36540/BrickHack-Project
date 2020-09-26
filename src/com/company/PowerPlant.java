@@ -57,9 +57,9 @@ public class PowerPlant {
     }
 
     // Calculates and subtracts the total cost from the company's profit
-    protected void calcTotalCost()
+    protected double calcCost()
     {
-        //company.changeProfit(output * cost);
+        return cost * output;
     }
 }
 

@@ -12,8 +12,12 @@ public class User_Menu {
     double interest_rate = 0.05;
     int late_months = 0;
     String bill_entry_amount = "";
-    public User_Menu(String _company_name, double _bill_owed, double _interest_rate, int _late_months)
+    private init pointer;
+    private String username;
+    public User_Menu(String _company_name, double _bill_owed, double _interest_rate, int _late_months, init p, String u)
     {
+        pointer = p;
+        username = u;
         company_name = _company_name;
         bill_owed = _bill_owed;
         interest_rate = _interest_rate;
@@ -122,6 +126,10 @@ public class User_Menu {
             @Override
             public void actionPerformed(ActionEvent e)
             {
+                Customer c = pointer.getUserUsername(username);
+                c.pay(Double.parseDouble(bill_entry_amount));
+                bill_owed -= Double.parseDouble(bill_entry_amount);
+                billLabel.setText("<html><font size='12' color=green> Bill Owed: " + bill_owed);
             }
         });
         window.add(billPayer, gbc);

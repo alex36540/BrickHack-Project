@@ -21,26 +21,30 @@ public class PowerPlant {
     }
 
     //Get the current output
-    public double getOutput()
-    {
+    public double getOutput() {
         return output;
     }
 
     //Set the current output
-    protected void setOutput(int amount)
-    {
-        if(amount > maxOutput)
-        {
+    protected void setOutput(int amount) {
+        if (amount > maxOutput) {
             output = maxOutput;
-        }
-        else if(amount < 0)
-        {
+        } else if (amount < 0) {
             output = 0;
-        }
-        else
-        {
+        } else {
             output = amount;
         }
+    }
+
+    //Add to total output
+    public void addOutput(double amount) {
+        totalOutput += amount;
+    }
+
+    // Get total output
+    public double getTotalOutput()
+    {
+        return totalOutput;
     }
 
     //Get the location of the plant

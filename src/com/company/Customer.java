@@ -8,6 +8,8 @@ public class Customer {
     private Company company; // company that proves the electricity for the customer
     private double totalConsumption = 0; // total amount of electricity that has been consumed, in kWh
     private double consumption; // current electricity consumption in kWh
+    private double totalDue; // amount that the customer owes to the company
+    private int timeSincePayment; // tracks the amount of time since they have not payed
 
     public Customer(String name, double[] location, String userName, String password, Company company)
     {
@@ -30,15 +32,51 @@ public class Customer {
         totalConsumption += amount;
     }
 
+    // get total consumption
+    protected double getTotalConsumption()
+    {
+        return totalConsumption;
+    }
+
     // get customer's name
     protected String getName()
     {
         return name;
     }
 
-    // get total consumption
-    protected double getTotalConsumption()
+    // gets the total amount due
+    protected double getTotalDue()
     {
-        return totalConsumption;
+        return totalDue;
+    }
+
+    // adds or subtracts amount due
+    protected void addTotalDue(double amount)
+    {
+        totalDue += amount;
+    }
+
+    // sets total amount due
+    protected void setTotalDue(double amount)
+    {
+        totalDue = amount;
+    }
+
+    // pays off the bill, subtracts from totalDue
+    protected void pay(double amount)
+    {
+        totalDue -= amount;
+    }
+
+    //gets time since the customer last payed
+    protected double getTimeSincePayment()
+    {
+        return timeSincePayment;
+    }
+
+    // adds 1 to time since payment
+    protected void addTime()
+    {
+        timeSincePayment++;
     }
 }

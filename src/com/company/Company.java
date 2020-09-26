@@ -75,7 +75,7 @@ public class Company {
     {
         for (PowerPlant p : plants)
         {
-            monthlyCost += p.calcCost();
+            monthlyProfit -= p.calcCost();
         }
     }
 

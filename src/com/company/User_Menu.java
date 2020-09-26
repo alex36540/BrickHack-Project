@@ -10,10 +10,15 @@ public class User_Menu {
     String company_name = "Chungus Corp";
     double bill_owed = 0;
     double interest_rate = 0.05;
-    double late_months = 0;
+    int late_months = 0;
     String bill_entry_amount = "";
-    public User_Menu()
+    public User_Menu(String _company_name, double _bill_owed, double _interest_rate, int _late_months)
     {
+        company_name = _company_name;
+        bill_owed = _bill_owed;
+        interest_rate = _interest_rate;
+        late_months = _late_months;
+        bill_entry_amount = "";
         constructUM();
         System.out.println("init");
     }
@@ -117,7 +122,6 @@ public class User_Menu {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                System.out.println("PAAAAY UP");
             }
         });
         window.add(billPayer, gbc);

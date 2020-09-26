@@ -13,8 +13,12 @@ public class Manager_Register_Menu {
     private String password;
     private String price;
     private String interest_rate;
-    public Manager_Register_Menu()
+    private init pointer;
+    private Login_Database ld_pointer;
+    public Manager_Register_Menu(init p, Login_Database ldp)
     {
+        pointer = p;
+        ld_pointer = ldp;
         name = "";
         username = "";
         password = "";
@@ -181,6 +185,8 @@ public class Manager_Register_Menu {
             public void actionPerformed(ActionEvent e)
             {
                 Company c = new Company(name, username, password, Double.parseDouble(price), Double.parseDouble(interest_rate));
+                pointer.addCompany(c);
+                ld_pointer.updateManagerLogins(username,password);
                 System.out.println("creation successful");
             }
         });

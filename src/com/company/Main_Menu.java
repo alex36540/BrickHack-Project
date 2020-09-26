@@ -11,14 +11,16 @@ import java.awt.event.*;
 
 public class Main_Menu {
 
-    public Login_Database LD= new Login_Database();
+    public Login_Database LD = new Login_Database();
     private String userUsernameEntry;
     private String userPasswordEntry;
     private String managerUsernameEntry;
     private String managerPasswordEntry;
-    public Main_Menu()
+    public init pointer;
+    public Main_Menu(init p)
     {
         constructMM();
+        pointer = p;
         userUsernameEntry = "";
         userPasswordEntry = "";
         managerUsernameEntry = "";
@@ -146,6 +148,8 @@ public class Main_Menu {
                 else
                 {
                     loginStatus.setText("<html><font size='5' color=Green> Login Status: Successful");
+                    Company comp = pointer.getCompUsername(managerUsernameEntry);
+                    Manager_Menu mm = new Manager_Menu(pointer, comp, comp.getName(),  comp.getInterest(), comp.getProfit(), comp.getMonthlyProfit());
                 }
             }
         });
@@ -170,10 +174,44 @@ public class Main_Menu {
                 else
                 {
                     loginStatus.setText("<html><font size='5' color=Green> Login Status: Successful");
+                    Customer user = pointer.getUserUsername(userUsernameEntry);
+                    User_Menu um = new User_Menu(user.getCompanyName(), user.getTotalDue(), user.getCompany().getInterest(), user.getTimeSincePayment());
                 }
             }
         });
         window.add(userLogin, gbc);
+
+        JButton managerRegister = new JButton("Register as Manager");
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.gridx = 2;
+        gbc.gridy = 1;
+        gbc.weightx = 1;
+        gbc.weighty = 0.4;
+        managerRegister.addActionListener( new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                Manager_Register_Menu mrm = new Manager_Register_Menu(pointer, LD);
+            }
+        });
+        window.add(managerRegister, gbc);
+
+        JButton userRegister = new JButton("Register as User");
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.gridx = 4;
+        gbc.gridy = 1;
+        gbc.weightx = 1;
+        gbc.weighty = 0.4;
+        userRegister.addActionListener( new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                User_Register_Menu urm = new User_Register_Menu(pointer, LD);
+            }
+        });
+        window.add(userRegister, gbc);
 
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setVisible(true);

@@ -15,9 +15,11 @@ public class User_Register_Menu {
     private String location_y;
     private String company_name;
     private init pointer;
-    public User_Register_Menu(init p)
+    private Login_Database ld_pointer;
+    public User_Register_Menu(init p, Login_Database ldp)
     {
         pointer = p;
+        ld_pointer = ldp;
         name = "";
         username = "";
         password = "";
@@ -219,7 +221,13 @@ public class User_Register_Menu {
                 coords[1] = Double.parseDouble(location_y);
                 if(pointer.getComp(company_name) != null)
                 {
-                    Customer c = new Customer(name, coords, username, password, pointer.getComp(company_name));
+                    Company comp = pointer.getComp(company_name);
+                    Customer c = new Customer(name, coords, username, password, comp);
+                    pointer.addCustomer(c);
+                    System.out.println(username);
+                    System.out.println(password);
+                    ld_pointer.updateUserLogins(username,password);
+                    comp.addCustomer(c);
                     System.out.println("creation successful");
                 }
             }

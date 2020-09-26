@@ -13,13 +13,21 @@ public class Manager_Menu {
     double interest_rate = 0.05;
     double profit = 1000;
     double profit_month = 300;
-    public Manager_Menu()
+    private init pointer;
+    private Company company_pointer;
+    public Manager_Menu(init p, Company cp, String _name, double _interest, double _profit, double _profit_month)
     {
-        constructMM();
+        company_name = _name;
+        interest_rate = _interest;
+        profit = _profit;
+        profit_month = _profit_month;
+        constructMM(p, cp);
     }
 
-    public void constructMM()
+    public void constructMM(init p, Company cp)
     {
+        pointer = p;
+        company_pointer = cp;
         GridBagLayout GBCLayout = new GridBagLayout();
         GridBagConstraints gbc = new GridBagConstraints();
         JFrame window = new JFrame();
@@ -60,5 +68,23 @@ public class Manager_Menu {
         gbc.weightx = 1;
         gbc.weighty = 1;
         window.add(profitLabel, gbc);
+
+        // Control Scheme
+        JButton nextMonthButton = new JButton("Progress to next Month");
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.gridx = 4;
+        gbc.gridy = 1;
+        gbc.weightx = 1;
+        gbc.weighty = 0.4;
+        nextMonthButton.addActionListener( new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                Company comp = pointer.getComp(company_name);
+                pointer.nextMonth(comp);
+            }
+        });
+        window.add(nextMonthButton, gbc);
     }
 }
